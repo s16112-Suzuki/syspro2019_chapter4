@@ -10,16 +10,18 @@ bottom = 2.5
 middle = 7.2
 top = 12.0
 
-for i in range(5):
-	servo.ChangeDutyCycle(bottom)
-	time.sleep(1.0)
+def setservo(theta):
+    duty = ((0.01055555555 * theta) + 1.45)/20 * 100
+    print('duty=')
+    print(duty)
+    servo.ChangeDutyCycle(duty)
+    time.sleep(1.0)
 
-	servo.ChangeDutyCycle(middle)
-	time.sleep(1.0)
-
-	servo.ChangeDutyCycle(top)
-	time.sleep(1.0)
-
-
-
+try : 
+    while 1:
+        print("theta = ")
+        a = input()
+        setservo(a)
+except KeyboardInterrupt:
+    GPIO.cleanup()
 
